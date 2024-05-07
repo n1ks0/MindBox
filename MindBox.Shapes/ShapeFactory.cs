@@ -1,24 +1,21 @@
 namespace MindBox.Shapes;
 
-internal abstract class ShapeFactory
+internal static class ShapeFactory
 {
-    public abstract IShape Create(params double[] values);
-}
-
-internal class CircleFactory : ShapeFactory
-{
-    /// <inheritdoc />
-    public override IShape Create(params double[] values)
+    internal static IShape CreateShape(params double[] values)
     {
-        return new Circle(values[0]);
-    }
-}
-
-internal class TriangleFactory : ShapeFactory
-{
-    /// <inheritdoc />
-    public override IShape Create(params double[] values)
-    {
-        return new Triangle(values[0], values[1], values[2]);
+        switch (values.Length)
+        {
+            case 1:
+            {
+                return new Circle(values[0]);
+            }
+            case 3:
+            {
+                return new Triangle(values[0], values[1], values[2]);
+            }
+            default:
+                throw new ArgumentException("Not supported values", nameof(values));
+        }
     }
 }

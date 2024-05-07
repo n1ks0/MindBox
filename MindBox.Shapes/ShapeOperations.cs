@@ -14,8 +14,7 @@ public static class ShapeOperations
     /// <returns>Площадь треугольника</returns>
     public static double GetTriangleArea(double a, double b, double c)
     {
-        var triangleFactory = new TriangleFactory();
-        var triangle = triangleFactory.Create(a, b, c);
+        var triangle = ShapeFactory.CreateShape(a, b, c);
         return triangle.GetArea();
     }
     
@@ -28,8 +27,7 @@ public static class ShapeOperations
     /// <returns>true - прямоугольный, false - не прямоугольный</returns>
     public static bool IsRightTriangle(double a, double b, double c)
     {
-        var triangleFactory = new TriangleFactory();
-        var triangle = triangleFactory.Create(a, b, c) as ITriangle;
+        var triangle = ShapeFactory.CreateShape(a, b, c) as ITriangle;
         return triangle?.IsRight() ?? false;
     }
 
@@ -40,8 +38,7 @@ public static class ShapeOperations
     /// <returns>Площадь круга</returns>
     public static double GetCircleArea(double r)
     {
-        var circleFactory = new CircleFactory();
-        var circle = circleFactory.Create(r);
+        var circle = ShapeFactory.CreateShape(r);
         return circle.GetArea();
     }
 }
